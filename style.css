@@ -1,12 +1,36 @@
-
-nav {
-    background-color: grey;
+body {
+    background: url(http://eskipaper.com/images/beach-sunset-chairs-1.jpg);
+    background-color: silver;
 }
 
 #hour {
     text-align: right;
 }
 
-#weather-items {
-    
+.time{
+    color: #fff;
+    font-size: 200;
+    text-shadow: 1px 1px grey;
+    font-weight: bold;
+}
+
+.weather-items {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    color: white;
+    text-shadow: 1px 1px grey;
+    font-weight: bold;
+}
+
+.weather-items .location {
+    font-size: 300%;
+}
+
+.weather-items .temperature{
+    font-size: 600%;
+}
+
+.weather-items .status{
+    padding-bottom: 20%;
 }
