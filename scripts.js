@@ -24,11 +24,36 @@ $(document).ready(function() {
         var todayDate = todayWeekDay + ", " + todayMonth + " " + date;
         $("#day-date").text(todayDate);
         
+        // The following is the update code for the hours 
+        var Hour = dateTime.getHours();
+        var Minute = dateTime.getMinutes();
+        var dayLight = " ";
         
+        if (Hour > 0 && Hour <= 11){
+            dayLight = " AM";
+        } else {
+            dayLight = " PM";
+        }
+        
+        if (dateTime.getHours() == 0){
+            Hour = 12;
+            dayLight = "AM";
+        } else if (dateTime.getHours() >= 13){
+            Hour = dateTime.getHours() - 12;
+        };
+        
+        if(Minute < 10){
+            Minute = "0" + Minute;
+        }
+        
+        var todayHour = Hour + ":" + Minute + dayLight ;
+        $("#hour").text(todayHour);
+        
+        // setInterval(updateTime, 1000);
         
     });
 
-    // setInterval(updateTime, 60000);
+    
     
 
     //   $.getJSON("/json/cats.json", function(json) {
