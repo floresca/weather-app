@@ -1,6 +1,6 @@
 body {
-    background: url(http://eskipaper.com/images/beach-sunset-chairs-1.jpg);
     background-color: silver;
+    background-image: url(../WeatherApp/weatherImage/Sunny.jpg);
 }
 
 #hour {
