@@ -78,7 +78,7 @@ $(document).ready(function() {
             var status = weatherData.weather[0].main;
             var icon = weatherData.weather[0].icon;
             
-           $(".temperature").append(Temp);
+           $(".temperature").append(Math.round((Temp * (9/5)) +32) + '&#8457;');
            $(".location").append(NAME);
            $(".status").append(status);
            $(".icon").attr("src",icon);
@@ -87,9 +87,7 @@ $(document).ready(function() {
 }
 
         
-    // if ($(".status").text() == "Clouds"){
-    //     $.
-    // }
+    
     
     
     
