@@ -1,20 +1,18 @@
 $(document).ready(function() {
     
-    var dateTime = new Date();
+    
     var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    var Hour = dateTime.getHours();
-    var Minute = dateTime.getMinutes();
-    var dayLight = " ";
     var latitude;
     var longitude;
     
     
 // The following is the code for the day of the week and date
     $("#day-date").ready(function upDate() {
-        var date = dateTime.getDate();
-        var Day = dateTime.getDay();
-        var Month = dateTime.getMonth();
+        var Time = new Date();
+        var date = Time.getDate();
+        var Day = Time.getDay();
+        var Month = Time.getMonth();
         
         for(var i = 0; i < days.length; i++){
             if(Day - 1 == i){
@@ -34,30 +32,25 @@ $(document).ready(function() {
     });
     
 // The following is the code for the hour update
-    $("#time").ready(function updateTime(){
-        
-        
-        if (Hour > 0 && Hour <= 11){
-            dayLight = " AM";
-        } else {
-            dayLight = " PM";
-        }
-        
-        
-        if (dateTime.getHours() == 0){
-            Hour = 12;
-            dayLight = " AM";
-        } else if (dateTime.getHours() >= 13){
-            Hour = dateTime.getHours() - 12;
-        };
-        
-        if(Minute < 10){
-            Minute = "0" + Minute;
-        }
+
+    $("#hour").ready(function updateTime(){
+        var Time = new Date();
+        var dayLight;
+        var Hour = Time.getHours();
+        var Minute = Time.getMinutes();
+            if (Minute < 10){
+                Minute = "0" + Minute;
+            }
+            
+            if (Time.getHours() > 12){
+                dayLight = " PM";
+            } else {
+                dayLight = " AM";
+            }
+         
         
         $("#hour").text(Hour + ":" + Minute + dayLight);
-        
-        
+            setTimeout(function(){updateTime()}, 500);
     });
     
     
