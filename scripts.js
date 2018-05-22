@@ -1,8 +1,6 @@
 $(document).ready(function() {
-    
-    
-    var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var latitude;
     var longitude;
     
@@ -42,19 +40,28 @@ $(document).ready(function() {
                 Minute = "0" + Minute;
             }
             
-            if (Time.getHours() > 12){
+            if (Time.getHours() >= 12){
                 dayLight = " PM";
+            } else if (Time.getHours() == 0) {
+                Hour = 12;
+                dayLight = " AM";
             } else {
                 dayLight = " AM";
             }
-         
+            
+            if (Time.getHours() >= 13){
+                Hour = Time.getHours() - 12;
+            }
         
         $("#hour").text(Hour + ":" + Minute + dayLight);
             setTimeout(function(){updateTime()}, 500);
     });
     
     
-// The following is the code for the location
+// The f
+            
+            
+            
     
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position){
