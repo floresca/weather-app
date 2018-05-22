@@ -3,8 +3,15 @@ $(document).ready(function() {
     var dateTime = new Date();
     var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    var Hour = dateTime.getHours();
+    var Minute = dateTime.getMinutes();
+    var dayLight = " ";
+    var latitude;
+    var longitude;
     
-    $(".time").ready(function updateTime() {
+    
+// The following is the code for the day of the week and date
+    $("#day-date").ready(function upDate() {
         var date = dateTime.getDate();
         var Day = dateTime.getDay();
         var Month = dateTime.getMonth();
@@ -24,10 +31,11 @@ $(document).ready(function() {
         var todayDate = todayWeekDay + ", " + todayMonth + " " + date;
         $("#day-date").text(todayDate);
         
-        // The following is the update code for the hours 
-        var Hour = dateTime.getHours();
-        var Minute = dateTime.getMinutes();
-        var dayLight = " ";
+    });
+    
+// The following is the code for the hour update
+    $("#time").ready(function updateTime(){
+        
         
         if (Hour > 0 && Hour <= 11){
             dayLight = " AM";
@@ -35,9 +43,10 @@ $(document).ready(function() {
             dayLight = " PM";
         }
         
+        
         if (dateTime.getHours() == 0){
             Hour = 12;
-            dayLight = "AM";
+            dayLight = " AM";
         } else if (dateTime.getHours() >= 13){
             Hour = dateTime.getHours() - 12;
         };
@@ -46,18 +55,42 @@ $(document).ready(function() {
             Minute = "0" + Minute;
         }
         
-        var todayHour = Hour + ":" + Minute + dayLight ;
-        $("#hour").text(todayHour);
+        $("#hour").text(Hour + ":" + Minute + dayLight);
         
-        // setInterval(updateTime, 1000);
         
     });
-
     
     
+// The following is the code for the location
+    
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position){
+            longitude = position.coords.longitude;
+            latitude = position.coords.latitude;
+        var callingWeather = "https://fcc-weather-api.glitch.me/api/current?lat="+latitude+"&lon="+longitude;
+// The following is the code for weather
 
-    //   $.getJSON("/json/cats.json", function(json) {
-    //     $(".message").html(JSON.stringify(json));
-    //     });
+        $.getJSON(callingWeather, weatherStuff);
+        
+        function weatherStuff(weatherData){
+            var Temp = weatherData.main.temp;
+            var NAME = weatherData.name;
+            var status = weatherData.weather[0].main;
+            var icon = weatherData.weather[0].icon;
+            
+           $(".temperature").append(Temp);
+           $(".location").append(NAME);
+           $(".status").append(status);
+           $(".icon").attr("src",icon);
+        }
+    });
+}
 
+        
+    // if ($(".status").text() == "Clouds"){
+    //     $.
+    // }
+    
+    
+    
 });
