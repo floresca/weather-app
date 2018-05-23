@@ -77,7 +77,7 @@ $(document).ready(function() {
                 var status = weatherData.weather[0].main;
                 var Conditions = weatherData.weather[0].id;
         
-        // After we call the address and get its values we output those values to the HTML
+// After we call the address and get its values we output those values to the HTML
                 $(".temperature").append(Math.round((Temp * (9/5)) +32) + '&#8457;');
                 $(".location").append(NAME);
                 $(".status").append(status);
@@ -90,7 +90,7 @@ $(document).ready(function() {
                     $("body").css({"background":"url(../WeatherApp/weatherImage/lightRain.jpg)"});
                 } else if (Conditions >= 500 && Conditions < 600) {
                     $("body").css({"background":"url(../WeatherApp/weatherImage/Rainy.jpeg)"});
-                } else if (Conditions == 600 || Conditions == 601 && Conditions >= 611 && Conditions < 700) {
+                } else if (Conditions >= 600 && Conditions < 700 && Conditions !== 602) {
                     $("body").css({"background":"url(../WeatherApp/weatherImage/Snow.jpg)"});
                 } else if (Conditions == 602) {
                     $("body").css({"background":"url(../WeatherApp/weatherImage/snowSpecial.jpg)"});
@@ -101,16 +101,21 @@ $(document).ready(function() {
                 } else {
                     $("body").css({"background":"url(../WeatherApp/weatherImage/Sunny.jpg)"});
                 }
+
+//Here is the button toggle between Fahrenheit and Celsius
+                
+                $(".btn").click(function() {
+                    var button = $(this);
+                   
+                    if (button.text() == "Show Celsius"){
+                        $(".temperature").html(Math.round(weatherData.main.temp) + '&#8451;');
+                        $(".btn").text("Show Fahrenheit");
+                    } else if (button.text() == "Show Fahrenheit"){
+                        $(".temperature").html(Math.round((Temp * (9/5)) +32) + '&#8457;');
+                        $(".btn").text("Show Celsius");
+                    }
+                });
             }
-            
         });
     }
-
-
-    
-        
-    
-    
-    
-    
 });
