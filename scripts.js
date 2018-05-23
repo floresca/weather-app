@@ -97,9 +97,9 @@ $(document).ready(function() {
                 } else if (Conditions >= 700 && Conditions < 800) {
                     $("body").css({"background":"url(../WeatherApp/weatherImage/fog.jpg)"});
                 } else if (Conditions >= 801 && Conditions < 805) {
-                    $("body").css({"background":"url(../WeatherApp/weatherImage/Cloudy.jpg)"});
+                    $("body").css({"background":"url(../WeatherApp/weatherImage/lightcloudy1.jpg)"});
                 } else {
-                    $("body").css({"background":"url(../WeatherApp/weatherImage/Sunny.jpg)"});
+                    $("body").css({"background":"url(../WeatherApp/weatherImage/clear.jpg)"});
                 }
 
 //Here is the button toggle between Fahrenheit and Celsius
