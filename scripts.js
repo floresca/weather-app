@@ -57,15 +57,22 @@ $(document).ready(function() {
             setTimeout(function(){updateTime()}, 500);
     });
     
-    
-// The following code calls the
+
+//New code for geo location
+//Connect to google API
+//Search for city with state
+//get lat and lon from google API
+//inject into api call for fcc weather app
+
+
+// The following code finds the location of the user and pulls the longitude and latitude
     
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position){
             longitude = position.coords.longitude;
             latitude = position.coords.latitude;
             
-// The following code calls the weather API using the latitude and Longitude
+// The following code calls the weather API using the Longitude and latitude
 
         var callingWeather = "https://fcc-weather-api.glitch.me/api/current?lat="+latitude+"&lon="+longitude;
         
@@ -76,6 +83,7 @@ $(document).ready(function() {
                 var NAME = weatherData.name;
                 var status = weatherData.weather[0].main;
                 var Conditions = weatherData.weather[0].id;
+                
         
 // After we call the address and get its values we output those values to the HTML
                 $(".temperature").append(Math.round((Temp * (9/5)) +32) + '&#8457;');
@@ -115,6 +123,7 @@ $(document).ready(function() {
                         $(".btn").text("Show Celsius");
                     }
                 });
+                
             }
         });
     }

@@ -1,6 +1,7 @@
 body {
     /*background: url(../WeatherApp/weatherImage/Sunny.jpg);*/
     background-color: silver;
+    background-size: 100% 100%;
 }
 
 #hour {
